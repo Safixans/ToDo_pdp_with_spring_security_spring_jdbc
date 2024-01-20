@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="navbar :: head(~{::title}, ~{::link})">
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body style="background: antiquewhite">
+<div class="container my-5">
+    <h1 class="my-3" style="text-align: center">Login Page</h1>
+    <form method="post" action="/auth/login">
+        <label class="mx-5" for="uname"> User Name</label><input class="form-control w-75 mx-5" type="text" name="uname" id="uname">
+        <label class="mx-5" for="pswd"> User password</label><input class="form-control w-75 mx-5" type="password" name="pswd" id="pswd">
+        <button class="btn btn-success mx-5 my-3" type="submit">Login</button>
+        <a href="/" class="btn btn-primary">Back to home</a>
+    </form>
+</div>
+</body>
+</html>

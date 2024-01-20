@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+<head th:replace="navbar :: head(~{::title}, ~{::link})">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="navbar :: header"></div>
+    <table class="my-5 table table-dark">
+        <thead class="table table-success">
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>ROLE</th>
+            <th>ACTIVE</th>
+            <th>ACTION</th>
+        </tr>
+        </thead>
+
+        <tbody class="table table-primary">
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:if="${#authentication.getName()==user.getUsername()}" th:text="${user.getUsername()+' YOU'}"></td>
+            <td th:if="${#authentication.getName()!=user.getUsername()}" th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getRole()}"></td>
+            <td th:if="${user.isActive()}" th:text="${user.isActive()}" style="color: blue; font-weight: bolder"></td>
+            <td th:if="${!user.isActive()}" th:text="${user.isActive()}" style="color: red; font-weight: bolder"></td>
+
+            <td style="display: flex">
+                <form th:if="${!user.isActive()}" th:action="@{/admin/activate/user(id=${user.getId()})}" method="post">
+                    <button  type="submit" class="btn btn-success">ACTIVATE</button>
+                </form>
+                <form th:if="${user.isActive()}" th:action="@{/admin/deactivate/user(id=${user.getId()})}" method="post">
+                    <button  type="submit" class="btn btn-danger">DEACTIVATE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

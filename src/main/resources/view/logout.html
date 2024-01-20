@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="navbar :: head(~{::title}, ~{::link})">
+    <meta charset="UTF-8">
+    <title>Log in</title>
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body style="background: antiquewhite">
+<div class="container my-5">
+    <div class="alert alert-danger">
+        <h1 class="my-3" style="text-align: center">Are you sure want to LOG OUT</h1>
+    </div>
+
+    <form method="post" action="/auth/logout">
+        <button class="btn btn-danger my-3" type="submit">Logout</button>
+        <a href="/" class="btn btn-warning">Back to home</a>
+    </form>
+</div>
+</body>
+</html>

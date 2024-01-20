@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navbar :: head(~{::title}, ~{::link})">
+    <title>Home page</title>
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+
+<body>
+<div th:replace="navbar :: header"></div>
+
+    <div class="container">
+        <h2 style="color: aqua; text-align: center; margin-top: 35px" id="tiitle">This is simple CRUD application with <br> Spring MVC with Collections LIST and THYMELEAF</h2>
+    </div>
+
+<div th:replace="navbar :: js"></div>
+</body>
+</html>

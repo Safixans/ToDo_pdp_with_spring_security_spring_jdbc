@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navbar :: head(~{::title}, ~{::link})">
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/style/todo.css">
+</head>
+<body>
+<div th:replace="navbar :: header"></div>
+
+    <div class="container">
+        <table class="table">
+            <thead class="table table-dark">
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Priority</td>
+                <td>Created At</td>
+                <td>Actions</td>
+            </tr>
+            </thead>
+
+            <tbody class="table table-success">
+            <tr th:each="todo, index : ${todos}" >
+                <td th:text="${index.count}"></td>
+                <td th:text="${todo.getTitle()}"></td>
+                <td th:text="${todo.getPriority()}"></td>
+                <td th:text="${#dates.format(#calendars.createNow(), 'dd-MM-yyy')}"></td>
+
+                <td>
+                    <form th:action="@{/todo/delete(id=${todo.getId()})}" method="post">
+                        <button type="submit"  class="btn btn-danger">Delete</button>||
+                        <a th:href="@{/todo/update(id=${todo.getId()})}" class="btn btn-warning">Update</a>
+                    </form>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div th:replace="navbar :: js"></div>
+</body>
+</html>
